@@ -9,7 +9,7 @@ hasCJKLanguage = false
 copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
 
 # Name of theme
-theme = "meme"
+theme = "meme-clone"
 
 # `hugo new` automatically opened text editor
 newContentEditor = ""
@@ -802,10 +802,6 @@ canonifyURLS = true
     # Open external links in a new tab?
     hrefTargetBlank = true
 
-    # Compatibility with LaTeX?
-    compatibleWithLaTeX = false
-
-
     ######################################
     # Table of Contents
 
@@ -1135,6 +1131,8 @@ canonifyURLS = true
 
     shareViaQRCode = true
 
+    addHashtags = true
+
 
     ######################################
     # Related Posts
@@ -1258,9 +1256,16 @@ canonifyURLS = true
 
 
     ######################################
-    # Syntax Highlighting
+    # Code Blocks
 
     enableHighlight = true
+
+    enableOverflowY = true
+    maxHeight = 20
+    # Unit: em
+
+    enableCopy = true
+    enableCopyAutoHide = true
 
 
     ######################################
