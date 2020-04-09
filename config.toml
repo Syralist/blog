@@ -246,7 +246,7 @@ canonifyURLS = true
         post = "tags"
     [[menu.main]]
         url = "/about/"
-        name = "About"
+        name = "Info"
         weight = 5
         pre = "internal"
         post = "user-circle"
@@ -1325,14 +1325,14 @@ canonifyURLS = true
 
 # de
 [languages.de]
-    languageName = "Deutsch"
+    languageName = "🌍 De"
     weight = 1
     languageCode = "de-DE"
     contentDir = "content"
 
 # en
 [languages.en]
-    languageName = "English"
+    languageName = "🌍 En"
     weight = 2
     languageCode = "en-US"
     contentDir = "content"
