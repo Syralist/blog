@@ -4,3 +4,7 @@
 [submodule "themes/meme-clone"]
 	path = themes/meme-clone
 	url = git@github.com:Syralist/hugo-theme-meme.git
+[submodule "public"]
+	path = public
+	url = git@github.com:Syralist/syralist.github.io.git
+	branch = master
