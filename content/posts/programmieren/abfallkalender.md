@@ -5,6 +5,9 @@ draft: true
 tags: 
 - Python 
 - Home Assistant
+- Beautifulsoup
+- Web Scraping
+- ICS
 ---
 
 # Bremer Abfallkalender
