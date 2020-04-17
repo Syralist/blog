@@ -27,7 +27,13 @@ Man braucht immer PHP oder Python und eine Datenbank, auch wenn man eigentlich n
 
 Im [Self Hosted][2] Podcast habe ich dann von Hugo gehört. 
 
+## Wie geht es los?
+
+### Vorbereitung
+Für Hugo gibt es diverse Installationsmethoden. Auf meinem Windowsrechner habe ich das Programm als ZIP heruntergeladen, unter Linux habe ich es mit Snap installiert. Details sind auf der [Hugo Webseite][3] zu finden.
+
 
 
 [1]: https://gohugo.io/ "Hugo"
 [2]: https://selfhosted.show/ "Self-Hosted Podcast"
+[3]: https://gohugo.io/getting-started/installing "Hugo Installation"
