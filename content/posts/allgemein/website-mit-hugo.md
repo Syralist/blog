@@ -1,5 +1,5 @@
 ---
-title: "Website mit Hugo erstellen - Einstieg"
+title: "Website mit Hugo erstellen -- Einstieg"
 date: 2020-05-19T20:20:55.280Z
 draft: false
 tags:
@@ -7,11 +7,9 @@ tags:
 - Website
 ---
 
-# Website mit Hugo erstellen -- Einstieg
-
 Dieser Blog wird mit [Hugo][1] erstellt. In diesem Beitrag erzähle ich was es damit auf sich hat und wie ich dazu gekommen bin.
 
-## Was ist Hugo?
+# Was ist Hugo?
 
 Hugo ist nach eigener Aussage das weltweit schnellste Framework für die Erstellung statischer Webseiten.
 Hugo ist in **Go** programmiert und verfügbar für alle gängigen Betriebssysteme. 
@@ -20,21 +18,21 @@ Die Beiträge werden in **Markdown** geschrieben und dann &bdquo;kompiliert&ldqu
 
 Damit ist der Workflow mit dem von $\LaTeX$ vergleichbar.
 
-## Warum Hugo?
+# Warum Hugo?
 
 An den meisten Content-Management-Systemen wie Wordpress, Drupal, Typo3, etc. hat mich immer gestört, dass man dafür ein mehr oder weniger mächtiges Backend aufsetzen muss.
 Man braucht immer PHP oder Python und eine Datenbank, auch wenn man eigentlich nur einen einfachen Blog schreiben möchte.
 
 Im [Self Hosted][2] Podcast habe ich dann von Hugo gehört. 
 
-## Wie geht es los?
+# Wie geht es los?
 
-### Vorbereitung
+## Vorbereitung
 Für Hugo gibt es diverse Installationsmethoden. Auf meinem Windowsrechner habe ich das Programm als ZIP heruntergeladen, unter Linux habe ich es mit Snap installiert. Details sind auf der [Hugo Webseite][3] zu finden.
 
 Es ist nicht zwingend erforderlich, aber es erleichtert einige Vorgänge, wenn man Git benutzt. Daher gehe ich in diesem Artikel davon aus, dass ihr Git installiert habt und über einen Github Account verfügt.
 
-### Seite anlegen
+## Seite anlegen
 Das Grundgerüst der Seite legt man mit dem folgenden Kommando auf der Konsole an:
 
 ```console
@@ -56,7 +54,7 @@ themes/
 Als nächstes sollte man sich ein Theme aus der [Hugo Theme Liste][4] aussuchen. Ich habe einige ausprobiert und mich schließlich für das MemE Theme entschieden. Die Installation funktioniert am einfachsten mit Git wie im [README][5] beschrieben.
 Die `config.toml` muss man an seine eigenen Bedürfnisse anpassen. Dazu folgt noch ein weiterer Artikel.
 
-### Artikel anlegen
+## Artikel anlegen
 Artikel legt man im Verzeichnis `content` als .md-Dateien an. Dabei kann man optional Unterordner als Kategorien anlegen. Man kann die Datei manuell anlegen oder diesen Hugo-Befehl dafür benutzen:
 
 ```console
@@ -75,7 +73,7 @@ Die Option `-D` an dieser Stelle ist wichtig, damit auch Artikel die als Draft (
 
 Jetzt kann man seine Artikel schreiben. Wenn der Server im Hintergrund läuft, wird die Seite automatisch neu erzeugt und im Browser aktualisiert, sobald man eine Datei ändert und speichert.
 
-### Seite veröffentlichen
+## Seite veröffentlichen
 Wenn man fertig mit seinen Artikeln ist ruft man `hugo` ohne weitere Optionen auf. Damit wird im Unterverzeichnis `public` die fertige Webseite mit allen nötigen Dateien erzeugt. Dieses Verzeichnis kann jetzt auf jedem Webserver gehostet werden. Der Workflow für das Hosten als github.io Seite wird auf der [Hugo-Webseite][6] gezeigt.
 
 [1]: https://gohugo.io/ "Hugo"

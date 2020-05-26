@@ -11,18 +11,17 @@ tags:
 - ESP8266
 ---
 
-# Umweltsensor mit ESPHome in Home Assistant
 In diesem Beitrag zeige ich die Schritte, um meinen Umweltsensor mit Button nachzubauen. Der Sensor misst Temperatur, Luftfeuchtigkeit und Luftdruck und hat einen Button um beliebige Aktionen auszulösen.
 
 ![Fertige Box](/images/2020-04-03-esphome-hardware-01.jpg)
 
-## Vorbereitung
-### Was ist ESPHome?
+# Vorbereitung
+## Was ist ESPHome?
 Laut der Selbstbeschreibung auf [esphome.io][1] ist ESPHome ein System, um ESP8266 bzw. ESP32 Mikrocontroller mit Hilfe von einfachen Konfigurationsdateien zu programmieren.
 
 ESPHome ist in Python geschrieben und lässt sich auch ohne Home Assistant einfach über `pip install esphome` oder mit `docker pull esphome/esphome` installieren. Ich benutze ESPHome als Home Assistant Addon, da bekommt man noch eine Weboberfläche zur Administration dazu.
 
-### Benötigte Hardware
+## Benötigte Hardware
 * ESP8266 Mikrocontroller - z.B. Wemos D1 mini
 * BME280 Sensor - mit I²C Breakoutboard
 * Drucktaster
@@ -31,7 +30,7 @@ ESPHome ist in Python geschrieben und lässt sich auch ohne Home Assistant einfa
 
 Das Gehäuse ist aus 3mm MDF gelasert. Ein Generator für solche Gehäuse ist zum Beispiel [boxes.py][2].
 
-### Sensor und Button anschließen
+## Sensor und Button anschließen
 
 Der BME280 wird per I²C angeschlossen, dafür brauchen wir die folgenden Pins:
 * 5V &rarr; VIN
@@ -47,9 +46,9 @@ Ich habe das ganze mit Sockeln auf einer Lochrasterplatine aufgebaut, um die Bau
 
 ![Platine von oben](/images/2020-04-03-esphome-hardware-03.jpg)
 
-## ESPHome Projekt in Home Assistant
+# ESPHome Projekt in Home Assistant
 
-### Projekt anlegen
+## Projekt anlegen
 Auf der Weboberfläche klickt man auf den freundlichen roten Button mit dem Plus, um den Wizard für neue Projekte aufzurufen.
 
 ![ESPHome Weboberfläche](/images/2020-04-03-esphome-01.png)
@@ -74,7 +73,7 @@ Nachdem man den Wizard mit **Submit** geschlossen hat, wird man noch auf die Sch
 
 ![ESPHome Wizard Schritt 5](/images/2020-04-03-esphome-06.png)
 
-### Dateiorganisation und !secrets
+## Dateiorganisation und !secrets
 
 In Home Assistant liegen die Projektdateien im Verzeichnis `/config/esphome`. Das Beispiel oben hat eine `umweltsensor.yaml` erzeugt.
 
@@ -104,7 +103,7 @@ Im gleichen Verzeichnis habe ich eine `secrets.yaml` angelegt. Die Einträge dar
 
 ![ESPHome secrets.yaml](/images/2020-04-03-esphome-07.png)
 
-### Das erste Mal Flashen
+## Das erste Mal Flashen
 
 Zum ersten Flashen muss der Mikrocontroller per USB mit dem Rechner verdunden werden, auf dem ESPHome läuft. In meinem Fall ist das der Raspberry Pi auf dem Home Assistant installiert ist.
 
@@ -132,7 +131,7 @@ In der folgenden Logging-Ausgabe kann man kontrollieren, ob man die WLAN Daten k
 
 Ab jetzt kann man den Mikrocontroller vom Raspberry Pi trennen und übers WLAN programmieren. Dafür stellt man die Schnittstelle oben auf Over-the-Air um.
 
-### Sensor und Button konfigurieren
+## Sensor und Button konfigurieren
 
 Damit der Sensor angesprochen werden kann wird als erstes die I²C Komponente geladen. Die Option `scan: True` sorgt dafür, dass bei jedem Boot der Bus nach Geräten gescannt wird.
 
@@ -179,7 +178,7 @@ binary_sensor:
       - delayed_on: 10ms
 ```
 
-### Mit Home Assistant verbinden
+## Mit Home Assistant verbinden
 
 Nachdem das vollständige Programm auf den Mikrocontroller geladen ist, müssen die Sensoren noch in Home Assistant einbunden werden. Die Einrichtung erfolgt über die Integrationsseite in den Home Assistant Einstellungen.
 
