@@ -231,6 +231,10 @@ canonifyURLS = true
     [[languages.en.menu.main]]
         weight = 7
         identifier = "lang-switcher"
+    [[languages.en.menu.main]]
+        weight = 8
+        identifier = "search"
+        post = "search"
     [[menu.main]]
         url = "/posts/"
         name = "Beiträge"
@@ -261,6 +265,10 @@ canonifyURLS = true
     [[menu.main]]
         weight = 7
         identifier = "lang-switcher"
+    [[menu.main]]
+        weight = 8
+        identifier = "search"
+        post = "search"
 
 
 
