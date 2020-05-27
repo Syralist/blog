@@ -137,10 +137,15 @@ canonifyURLS = true
     mediaType = "application/rss+xml"
     baseName = "rss"
 
+# Search index for lunr.js
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
+
 # Hugo’s output control
 [outputs]
     page = ["HTML"]
-    home = ["HTML", "SectionsAtom", "SectionsRSS"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
     section = ["HTML"]
     # Taxonomy
     taxonomyTerm = ["HTML"]
@@ -276,15 +281,6 @@ canonifyURLS = true
 
     headerLayout = "flex"
     # Note: center or flex
-
-    headerFallbackWidth = "32em"
-    # Note: by default, MemE uses main-inner’s
-    #       width for `headerWidth`, but in
-    #       some pages (e.g. homepage layout
-    #       poetry, footage), there is no
-    #       main-inner, so you need to give
-    #       a fallback value for this
-    #       situation.
 
     # Hide menu bar and display a toggle
     # on narrow screen?
@@ -452,7 +448,7 @@ canonifyURLS = true
     ######################################
     # List Page
 
-    listWidth = 30
+    listWidth = 39
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -493,6 +489,11 @@ canonifyURLS = true
     # Display count of posts in each
     # taxonomy term?
     displayTaxonomyTermCount = true
+
+    # Set to a non-negative number to limit
+    # the number of posts displayed per
+    # taxonomy term.
+    limitEntriesLimit = -1
 
 
     ######################################
@@ -576,7 +577,7 @@ canonifyURLS = true
     #       content (the path of the icons).
 
     themeColor = "#fff"
-    themeColorDark = "#1c1c21"
+    themeColorDark = "#16171d"
     safariMaskColor = "#2a6df4"
     msApplicationTileColor = "#fff"
 
@@ -731,7 +732,7 @@ canonifyURLS = true
     #            supported
 
     # The content width of the post
-    postWidth = 32
+    postWidth = 39
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -1241,6 +1242,9 @@ canonifyURLS = true
     #       don’t need the text or icon
     #       https://busuanzi.ibruce.info/
 
+    # Socials
+    enableSocials = true
+    # Note: see data/Socials.toml
 
     ######################################
     # Multilingual
@@ -1309,6 +1313,15 @@ canonifyURLS = true
     enableInstantPage = true
     # Note: https://github.com/instantpage/instant.page
 
+
+    ######################################
+    # Lunr search
+
+    # Note: This requires SearchIndex
+    # output to be enabled.
+
+    enableLunrSearch = true
+    # Note: https://lunrjs.com/
 
     ######################################
     # 404 Page
