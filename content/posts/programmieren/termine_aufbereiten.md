@@ -1,6 +1,6 @@
 ---
 title: "Termine mit Python aufbereiten"
-date: 2020-05-26T16:07:40.698Z
+date: 2020-06-02T17:08:46.680Z
 draft: true
 tags: 
 - Python 
@@ -110,6 +110,38 @@ Dem `csv.reader` muss man das Trennzeichen und den Quotechar mitgeben, damit die
 In der for-Schleife wird zuerst die Überschrift übersprungen. Als nächstes wird mit `if row[1] in d` geprüft, ob das Datum schon in meinem Dictionary eingetragen ist. Wenn das der Fall ist, werden die beiden Abfuhrarten über einen f-String zusammengefasst und der Eintrag im Dictionary aktualisiert.
 Ansonsten wird einfach ein neuer Eintrag zum Dictionary hinzugefügt.
 
+Damit habe ich nun ein Dictionary mit dem Datums-String als *key* und der Abfuhrart als *value*.
+
+## Events anlegen
+Im nächsten Schritt wird jetzt über das Dictionary iteriert und das oben angelegte Calendar-Objekt mit Events befüllt. `d.items()` gibt dabei jeweils *Key* und *Value* als Tuple zurück.
+```python
+# Zusammengefasste Termine ins ICS Format umandeln
+for datum, abfuhr in d.items():
+    # Event anlegen
+    e = Event()
+    # Titel zusammenbauen
+    e.name = f"Müllabfuhr{(' ' + abfuhr) if descriptive_title else ''}{offset_string if offset_hours > 0 else ''}"
+    # Startzeitpunkt zusammenbauen
+    _date = datetime.datetime.strptime(datum, "%d.%m.%Y").replace(hour=event_hour, tzinfo=tz.gettz("Europe/Berlin"))
+    begin = arrow.get(_date)
+    if ics_workaround:
+        begin = begin.shift(days = 1)
+    e.begin = begin.shift(days = -1 if on_day_before else 0)
+    # Dauer eintragen bzw. ganztägigen Termin erzeugen
+    e.duration = {"hours": duration_hour}
+    if all_day:
+        e.make_all_day()
+    # Art der Abfuhr eintragen
+    e.description = abfuhr
+    # Event eintragen
+    c.events.add(e)
+```
+
+Für den Titel des Events benutze ich wieder einen f-String, um mehrere Strings zusammenzusetzen.
+Der Ausdruck `(' ' + abfuhr) if descriptive_title else ''` ist ein sogennater *ternärer Operator*.
+Wenn `descriptive_title` auf `True` gesetzt ist, wird der Teil vor dem `if` benutzt, ansonsten der Teil hinter dem `else`.
+
+Der Startzeitpunkt wird zunächst als *datetime* Objekt mit `strptime` aus dem Key gelesen.
 
 
 [1]: https://www.die-bremer-stadtreinigung.de/privatkunden/entsorgung/bremer_abfallkalender-23080 "Bremer Abfallkalender"
