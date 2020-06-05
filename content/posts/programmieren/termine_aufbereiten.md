@@ -1,7 +1,7 @@
 ---
 title: "Termine mit Python aufbereiten"
-date: 2020-06-02T17:08:46.680Z
-draft: true
+date: 2020-06-05T12:03:21.203Z
+draft: false
 tags: 
 - Python 
 - Home Assistant
@@ -88,7 +88,7 @@ Die Einträge in der CSV-Datei sehen folgendermaßen aus:
 "Mittwoch";"08.01.2020";"Restmüll"
 ```
 
-Als nächstes wird jetzt die CSV-Datei eingelesen und die Einträge vorverarbeitet.
+Die CSV-Datei wird zeilenweise eingelesen und die Einträge vorverarbeitet.
 ```python
 ## Datei öffnen
 with open(csv_file) as f:
@@ -105,7 +105,7 @@ with open(csv_file) as f:
             d[row[1]] = row[2]
 ```
 
-Dem `csv.reader` muss man das Trennzeichen und den Quotechar mitgeben, damit die Datei korrekt eingelesen wird. 
+Dem `csv.reader` muss man dabei das Trennzeichen und den Quotechar mitgeben, damit die Datei korrekt eingelesen wird. 
 
 In der for-Schleife wird zuerst die Überschrift übersprungen. Als nächstes wird mit `if row[1] in d` geprüft, ob das Datum schon in meinem Dictionary eingetragen ist. Wenn das der Fall ist, werden die beiden Abfuhrarten über einen f-String zusammengefasst und der Eintrag im Dictionary aktualisiert.
 Ansonsten wird einfach ein neuer Eintrag zum Dictionary hinzugefügt.
@@ -142,6 +142,26 @@ Der Ausdruck `(' ' + abfuhr) if descriptive_title else ''` ist ein sogennater *t
 Wenn `descriptive_title` auf `True` gesetzt ist, wird der Teil vor dem `if` benutzt, ansonsten der Teil hinter dem `else`.
 
 Der Startzeitpunkt wird zunächst als *datetime* Objekt mit `strptime` aus dem Key gelesen.
+Gleichzeitig wird mit `.replace` die Stunde auf den oben definierten Wert gesetzt und die Zeitzone eingestellt.
+Das *datetime* Objekt wird anschließend in *arrow* Objekt umgewandelt, weil das vom ICS Modul erwartet wird.
+
+Das ICS Modul hat in der verwendeten Version den Bug, dass bei ganztägigen Terminen die Zeitzone nicht berücksichtigt wird und so der Termin einen Tag zu früh erscheint. 
+Als Workaround schiebe ich daher den Termin mit `.shift` einen Tag nach vorne, so dass er von ICS am richtigen Tag erzeugt wird. 
+Wenn oben konfiguriert ist, dass der Termin am Tag vor der Abfuhr erzeugt werden soll, wird mit dem gleichen Befehl der Zeitpunkt wieder nach hinten geschoben.
+
+Nun wird die oben eingestellte Dauer in den Termin eingetragen und anschließend gegebenenfalls der Termin in einen ganztägigen Termin umgewandelt.
+
+Zu guter Letzt wird die Abfuhrart in die Terminbeschreibung eingetragen und das Event zum Calender Objekt hinzugefügt.
+
+## ICS Datei schreiben
+Der letzte Schritt ist dann das Calendar Objekt in eine Datei zu schreiben.
+```python
+# Kalenderdatei schreiben
+with open("abfuhr.ics", "w") as f:
+    f.writelines(c)
+```
+
+Die entstandene Datei kann man nun zum Beispiel in Google importieren.
 
 
 [1]: https://www.die-bremer-stadtreinigung.de/privatkunden/entsorgung/bremer_abfallkalender-23080 "Bremer Abfallkalender"
