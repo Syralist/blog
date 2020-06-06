@@ -61,7 +61,7 @@ duration_hour = 1
 ```
 
 It can be set whether the appointment is to be created for a whole day or for a specific hour with a configurable duration. You can create the appointment on the day before the collection or on the correct day.
-You can have the type of collection written in the title or just &bdquo;Müllabfuhr&ldquo;. For the integration in Home Assistant you can enter an offset.
+You can have the type of collection written in the title or just &ldquo;Müllabfuhr&rdquo;. For the integration in Home Assistant you can enter an offset.
 
 ## Helper Variables
 Before we start reading the CSV file, I create some helper variables.
