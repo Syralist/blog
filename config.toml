@@ -442,6 +442,10 @@ canonifyURLS = true
     # category?
     displayPostsCount = true
 
+    # Set to a non-negative number to limit
+    # the number of posts displayed per
+    # category/section.
+    limitPostsLimit = -1
 
     ######################################
     # Tags Page
@@ -456,7 +460,7 @@ canonifyURLS = true
     ######################################
     # List Page
 
-    listWidth = 39
+    listWidth = 36
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -563,6 +567,10 @@ canonifyURLS = true
     #       may still read your blog in
     #       light mode, even if you have
     #       hidden the theme toggle.
+    #       Unless you enable the following
+    #       option.
+
+    overrideSystemPreferences = false
 
 
     ######################################
@@ -646,6 +654,18 @@ canonifyURLS = true
 
 
     ######################################
+    # Mermaid (https://github.com/mermaid-js/mermaid)
+
+    enableMermaid = false
+    # Note: *global settings*
+    #       `mermaid` in post’s Front Matter
+    #       has a higher priority than here
+
+    mermaidTheme = 'default'
+    mermaidThemeDark = 'dark'
+
+
+    ######################################
     # Comments
 
     # Note: render only in production
@@ -665,8 +685,6 @@ canonifyURLS = true
     valineAppId = ""
     valineAppKey = ""
     valinePlaceholder = "Just go go"
-    valineNotify = false
-    valineVerify = false
     valinePath = ""
     valineAvatar = "mm"
     valineMeta = ["nick", "mail", "link"]
@@ -674,9 +692,13 @@ canonifyURLS = true
     valineLang = "en"
     valineVisitor = false
     valineHighlight = true
-    avatarForce = false
+    valineAvatarForce = false
     valineRecordIP = false
     valineServerURLs = ""
+    valineEmojiCDN = ""
+    valineEmojiMaps = {}
+    valineEnableQQ = false
+    valineRequiredFields = []
     # Note: https://valine.js.org/
 
     ## Utterances
@@ -740,7 +762,7 @@ canonifyURLS = true
     #            supported
 
     # The content width of the post
-    postWidth = 39
+    postWidth = 36
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -979,7 +1001,7 @@ canonifyURLS = true
     ######################################
     ## Font Size (unit: px)
 
-    fontSize = 20
+    fontSize = 18
 
     ######################################
     ## Tab Size
