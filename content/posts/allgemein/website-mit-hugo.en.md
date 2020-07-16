@@ -2,6 +2,8 @@
 title: "Building a Website with Hugo -- Basics"
 date: 2020-05-19T20:20:55.280Z
 draft: false
+toc: true
+tocNum: false
 tags:
 - Hugo
 - Website

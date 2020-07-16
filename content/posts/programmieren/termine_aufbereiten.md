@@ -2,6 +2,8 @@
 title: "Termine mit Python aufbereiten"
 date: 2020-06-05T12:03:21.203Z
 draft: false
+toc: true
+tocNum: false
 tags: 
 - Python 
 - Home Assistant
