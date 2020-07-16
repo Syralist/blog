@@ -10,13 +10,13 @@ tags:
 - Raspberry Pi
 ---
 
-# My first 3D Printer
+## My first 3D Printer
 
 I learned about 3D printing a few years ago at the [ Hackerspace ][1]. Now I finally decided to buy my own printer.
 After a video from [SchimmerMedia][2] I decided to buy the **Alfawise U50** for less than 200€ from [Gearbest][3].
 
-# The Unboxing
-## The Packaging
+## The Unboxing
+### The Packaging
 
 The printer arrives from China well protected in foam packaging.
 
@@ -40,7 +40,7 @@ These parts must now be assembled according to the instructions.
 
 ![Alle the parts](/images/2020-07-15-alfawise-u50-unboxing-06.jpg)
 
-## The Assembly
+### The Assembly
 
 The text of the manual is translated into reasonably understandable English, but the pictures are sometimes a bit small.
 
@@ -82,7 +82,7 @@ And this is what it looks like before the wiring.
 ![Completely assembled - rear view](/images/2020-07-15-alfawise-u50-unboxing-17.jpg)
 ![Completely assembled - front view](/images/2020-07-15-alfawise-u50-unboxing-18.jpg)
 
-## The Wiring
+### The Wiring
 
 All components are wired with plug-in connectors. 
 Due to the different size, servo connection and limit switch connection cannot be confused. Due to the shape of the plug, reverse polarity is also basically impossible.
@@ -107,7 +107,7 @@ Meanwhile I have fixed them with cable ties to the top.
 
 ![Fully wired](/images/2020-07-15-alfawise-u50-unboxing-24.jpg)
 
-## Switching on for the first time
+### Switching on for the first time
 
 After everything was wired, I could switch on for the first time and since no MagicSmoke™ has escaped anywhere, I obviously put everything together correctly.
 Here you can already see the glued on printing bed.
@@ -132,7 +132,7 @@ In the meantime I have printed a suitable adapter for it. There will be a separa
 
 ![Temporary spacer](/images/2020-07-15-alfawise-u50-unboxing-28.jpg)
 
-# My first Impression
+## My first Impression
 
 After I ordered the printer, I came across two blog posts at [China-Gadets][5] and [Drucktipps3D][6] that tore the U50 up quite a bit.
 Of course I don't have that much experience with other printers but I'm quite satisfied with the construction and quality so far.

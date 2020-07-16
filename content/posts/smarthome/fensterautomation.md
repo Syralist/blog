@@ -13,12 +13,12 @@ tags:
 - Homematic
 ---
 
-# Fenster steuert Heizkörper
+## Fenster steuert Heizkörper
 
 Wie ich schon in meinem Artikel über mein [Smarthomesetup][1] geschrieben habe, sind die Automationen das, was ein Smarthome erst smart macht.
 Hier beschreibe ich, wie ich den Heizkörper herunterregle, wenn das Fenster geöffnet wird und wieder zurückstelle, wenn das Fenster geschlossen wird.
 
-## Beteiligte Komponenten
+### Beteiligte Komponenten
 
 Das Fenster wird mit einem **Xiaomi Aqara Tür-/Fensterkontakt** überwacht. Der sendet den Status per **Zigbee** an den Conbee Stick. Der Conbee ist per Deconz in Home Assistant eingebunden.
 
@@ -33,7 +33,7 @@ Die Absenktemperatur wird über eine *input_number* Entity eingestellt.
 
 ![input_number](/images/2020-06-06-input-number.png)
 
-## NodeRed
+### NodeRed
 
 Die Automation ist in NodeRed umgesetzt und besteht aus sechs Nodes.
 

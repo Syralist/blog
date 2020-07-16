@@ -11,15 +11,15 @@ tags:
 
 In this article I show how to import a list of appointments, process them and then save them in ICS format.
 
-# Background
+## Background
 Bremer Stadtreinigung offers the [waste collection dates][1] for download as ICS file and as CSV file. Unfortunately there are two separate dates for residual waste and organic waste although both are collected on the same day.
 
 Since I also integrate the dates into my Smarthome to receive notifications about them, I also want them to be in a certain format in the calendar. Details about the integration will follow in a later article.
 
-# The Python script
+## The Python script
 The finished script can be found here on [Github][2]. You need at least **Python 3.6** because I use f-strings.
 
-## Imports
+### Imports
 First the required modules are imported. `ics` and `arrow` can be installed via `pip`, the other modules are included in the standard library.
 
 ```python
@@ -36,7 +36,7 @@ import datetime
 * `dateutil.tz` : Time zone definitions
 * `datetime` : Standard functions for time objects
 
-## Configuration
+### Configuration
 To make my script also interesting for others, I tried to program different possibilities to create the dates and make them configurable.
 
 ```python
@@ -63,7 +63,7 @@ duration_hour = 1
 It can be set whether the appointment is to be created for a whole day or for a specific hour with a configurable duration. You can create the appointment on the day before the collection or on the correct day.
 You can have the type of collection written in the title or just &ldquo;Müllabfuhr&rdquo;. For the integration in Home Assistant you can enter an offset.
 
-## Helper Variables
+### Helper Variables
 Before we start reading the CSV file, I create some helper variables.
 
 ```python
@@ -79,7 +79,7 @@ The `offset_string` is required for the Home Assistant integration already menti
 
 For the following code I additionally need an empty Dictionary `d` and an empty Calendar object `c`.
 
-## Import CSV file
+### Import CSV file
 The entries in the CSV file look like this:
 ```text
 "Wochentag";"Datum";"Abfuhrart"
@@ -112,7 +112,7 @@ Otherwise, a new entry is added to the dictionary.
 
 Now I have a dictionary with the date string as *key* and the collection type as *value*.
 
-## Create Events
+### Create Events
 The next step is to iterate over the dictionary and fill the Calendar object created above with events. `d.items()` returns *Key* and *Value* as a tuple.
 ```python
 # Zusammengefasste Termine ins ICS Format umandeln
@@ -153,7 +153,7 @@ Now the duration set above is entered into the appointment and then, if necessar
 
 Finally, the collection type is entered in the event description and the event is added to the calendar object.
 
-## Writing the ICS file
+### Writing the ICS file
 The last step is to write the Calendar object to a file.
 ```python
 # Kalenderdatei schreiben

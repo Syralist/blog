@@ -13,12 +13,12 @@ tags:
 - Homematic
 ---
 
-# Window Controls Radiator
+## Window Controls Radiator
 
 As I wrote in my article about my [Smarthome setup][1], automation is what makes a smart home smart.
 Here I describe how I turn the radiator down when the window is opened and turn it back up again when the window is closed.
 
-## Involved Components
+### Involved Components
 
 The window is monitored with a **Xiaomi Aqara door/window contact**. This sends the status via **Zigbee** to the Conbee Stick. The Conbee is integrated into Home Assistant via Deconz.
 
@@ -33,7 +33,7 @@ The reduced temperature is set via an *input_number* entity.
 
 ![input_number](/images/2020-06-06-input-number.png)
 
-## NodeRed
+### NodeRed
 
 The automation is implemented in NodeRed and consists of six nodes.
 

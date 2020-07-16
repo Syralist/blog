@@ -11,15 +11,15 @@ tags:
 
 In diesem Beitrag zeige ich, wie ich eine Liste mit Terminen einlese, verarbeite und dann im ICS Format abspeichere.
 
-# Hintergrund
+## Hintergrund
 Die Bremer Stadtreinigung bietet die [Müllabfuhrtermine][1] zum Download als ICS Datei und als CSV Datei an. Leider sind dabei für Restmüll und Biomüll jeweils zwei einzelne Termine eingetragen obwohl beides am gleichen Tag abgeholt wird.
 
 Da ich die Termine ausserdem in mein Smarthome einbinde, um darüber Benachrichtungen zu erhalten, möchte ich sie ausserdem im einem bestimmten Format im Kalender stehen haben. Details zur Einbindung folgen in einem späteren Artikel.
 
-# Das Python-Skript
+## Das Python-Skript
 Zu finden ist das fertige Skript hier auf [Github][2]. Man braucht mindestens **Python 3.6**, da ich f-Strings verwende.
 
-## Imports
+### Imports
 Zuerst werden die benötigte Module importiert. `ics` und `arrow` können über `pip` installiert werden, die anderen Module sind in der Standardlibrary enthalten.
 
 ```python
@@ -36,7 +36,7 @@ import datetime
 * `dateutil.tz` : Zeitzonen-Definitionen
 * `datetime` : Standardfunktionen für Zeitobjekte
 
-## Einstellungen
+### Einstellungen
 Damit mein Skript auch für andere interessant ist, habe ich versucht, verschiedene Möglichkeiten die Termine zu erstellen zu programmieren und parametrierbar zu machen.
 
 ```python
@@ -63,7 +63,7 @@ duration_hour = 1
 Eingestellt werden kann, ob der Termin ganztägig oder zu einer bestimmten Stunde mit einer einstellbaren Dauer erzeugt werden soll. Dabei kann man den Termin am Vortag der Abfuhr erzeugen oder am richtigen Tag.
 Man kann die Art der Abfuhr mit in den Titel schreiben lassen oder nur &bdquo;Müllabfuhr&ldquo;. Für die Einbindung in Home Assistant kann man einen Offset eintragen lassen.
 
-## Hilfsvariablen
+### Hilfsvariablen
 Bevor es an das Einlesen der CSV Datei geht, erzeuge ich einige Hilfsvariablen.
 
 ```python
@@ -79,7 +79,7 @@ Der `offset_string` wird für die schon angesprochene Home Assistant Einbindung 
 
 Für den folgenden Code brauche ich dann noch ein leeres Dictionary `d` und ein leeres Calendar-Objekt `c`.
 
-## CSV Datei einlesen
+### CSV Datei einlesen
 Die Einträge in der CSV-Datei sehen folgendermaßen aus:
 ```text
 "Wochentag";"Datum";"Abfuhrart"
@@ -112,7 +112,7 @@ Ansonsten wird einfach ein neuer Eintrag zum Dictionary hinzugefügt.
 
 Damit habe ich nun ein Dictionary mit dem Datums-String als *key* und der Abfuhrart als *value*.
 
-## Events anlegen
+### Events anlegen
 Im nächsten Schritt wird jetzt über das Dictionary iteriert und das oben angelegte Calendar-Objekt mit Events befüllt. `d.items()` gibt dabei jeweils *Key* und *Value* als Tuple zurück.
 ```python
 # Zusammengefasste Termine ins ICS Format umandeln
@@ -153,7 +153,7 @@ Nun wird die oben eingestellte Dauer in den Termin eingetragen und anschließend
 
 Zu guter Letzt wird die Abfuhrart in die Terminbeschreibung eingetragen und das Event zum Calender Objekt hinzugefügt.
 
-## ICS Datei schreiben
+### ICS Datei schreiben
 Der letzte Schritt ist dann das Calendar Objekt in eine Datei zu schreiben.
 ```python
 # Kalenderdatei schreiben

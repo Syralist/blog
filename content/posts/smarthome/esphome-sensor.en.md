@@ -15,13 +15,13 @@ In this post I show the steps to recreate my environmental sensor with a button.
 
 ![Complete Box](/images/2020-04-03-esphome-hardware-01.jpg)
 
-# Preparation
-## What ist ESPHome?
+## Preparation
+### What ist ESPHome?
 According to the self-description on [esphome.io][1], ESPHome is a system for programming ESP8266 or ESP32 microcontrollers using simple configuration files.
 
 ESPHome is written in python and can be installed without Home Assistant using `pip install esphome` or with `docker pull esphome/esphome`. I use ESPHome as a home assistant addon, because you also get a web interface for administration.
 
-## Needed Hardware
+### Needed Hardware
 * ESP8266 microcontroller - e.g. Wemos D1 mini
 * BME280 sensor - with I²C breakout board
 * push button
@@ -30,7 +30,7 @@ ESPHome is written in python and can be installed without Home Assistant using `
 
 The housing is lasered from 3mm MDF. A generator for such housings is for example [boxes.py][2].
 
-## Connect Sensor and Button
+### Connect Sensor and Button
 
 The BME280 is connected via I²C, for this we need the following pins:
 * 5V &rarr; VIN
@@ -46,9 +46,9 @@ I built the whole thing with plinths on a breadboard in order to be able to easi
 
 ![Circuit Board from the top](/images/2020-04-03-esphome-hardware-03.jpg)
 
-# ESPHome Project in Home Assistant
+## ESPHome Project in Home Assistant
 
-## Create Project
+### Create Project
 Click on the friendly red button with the plus on the web interface to open the wizard for new projects.
 
 ![ESPHome Web UI](/images/2020-04-03-esphome-01.png)
@@ -73,7 +73,7 @@ After closing the wizard with **Submit**, the interface selection in the upper c
 
 ![ESPHome Wizard Step 5](/images/2020-04-03-esphome-06.png)
 
-## Fileorganisation and !secrets
+### Fileorganisation and !secrets
 
 In Home Assistant, the project files are in the directory `/config/esphome`. The example given has created the `umweltsensor.yaml`.
 
@@ -103,7 +103,7 @@ I created a `secrets.yaml` in the same directory. The entries in it can be impor
 
 ![ESPHome secrets.yaml](/images/2020-04-03-esphome-07.png)
 
-## Flashing for the First Time
+### Flashing for the First Time
 
 For the first flashing, the microcontroller must be connected via USB to the computer on which ESPHome is running. In my case, the Raspberry Pi where Home Assistant is installed.
 
@@ -131,7 +131,7 @@ In the following logging output you can check whether you have entered the WiFi 
 
 From now on you can disconnect the microcontroller from the Raspberry Pi and program it via WiFi. To do this, switch the interface above to over-the-air.
 
-## Configure Sensor and Button
+### Configure Sensor and Button
 
 For the sensor to be addressed the I²C component is loaded first. The `scan: True` option ensures that the bus is scanned for devices on every boot.
 
@@ -178,7 +178,7 @@ binary_sensor:
       - delayed_on: 10ms
 ```
 
-## Connecting to Home Assistant
+### Connecting to Home Assistant
 
 After the complete program has been loaded onto the microcontroller, the sensors must still be integrated in Home Assistant. The setup is done via the integration page in the Home Assistant settings.
 

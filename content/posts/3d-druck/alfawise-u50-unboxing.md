@@ -10,13 +10,13 @@ tags:
 - Raspberry Pi
 ---
 
-# Mein erster 3D-Drucker
+## Mein erster 3D-Drucker
 
 Das Thema 3D-Druck habe ich vor einigen Jahren im [Hackerspace][1] kennengelernt. Jetzt habe ich mich endlich dazu durchgerungen, mir einen eigenen Drucker zuzulegen.
 Nach einem Video von [SchimmerMedia][2] habe ich mich für den **Alfawise U50** für unter 200€ von [Gearbest][3] entschieden.
 
-# Das Unboxing
-## Die Verpackung
+## Das Unboxing
+### Die Verpackung
 
 Der Drucker kommt gut geschützt in Schaumstoff verpackt aus China an.
 
@@ -40,7 +40,7 @@ Diese Teile gilt es nun nach der Anleitung zusammenzubauen.
 
 ![Alle Einzelteile](/images/2020-07-15-alfawise-u50-unboxing-06.jpg)
 
-## Der Aufbau
+### Der Aufbau
 
 Der Text der Anleitung ist in einigermaßen verständliches Englisch übersetzt, allerdings sind die Bilder teilweise etwas klein geraten.
 
@@ -82,7 +82,7 @@ Und so sieht das ganze vor dem Verkabeln aus.
 ![Fertig zusammengebaut - Rückansicht](/images/2020-07-15-alfawise-u50-unboxing-17.jpg)
 ![Fertig zusammengebaut - Frontansicht](/images/2020-07-15-alfawise-u50-unboxing-18.jpg)
 
-## Das Verkabeln
+### Das Verkabeln
 
 Alle Komponenten werden mit Steckverbindern verkabeln. 
 Durch die unterschiedliche Größe kann man Servoanschluss und Endschalteranschluss nicht verwechseln. Durch die Steckerform ist auch ein Verpolen im Grunde ausgeschlossen.
@@ -107,7 +107,7 @@ Die habe ich inzwischen mit Kabelbindern nach oben festgemacht.
 
 ![Fertig verkabelt](/images/2020-07-15-alfawise-u50-unboxing-24.jpg)
 
-## Das erste Mal Einschalten
+### Das erste Mal Einschalten
 
 Nachdem alles verkabelt war, konnte ich das erste Mal einschalten und da nirgendwo MagicSmoke™ entwichen ist habe ich offensichtlich alles richtig zusammengesteckt.
 Hier sieht man auch schon das aufgeklebte Druckbett.
@@ -132,7 +132,7 @@ Inzwischen habe ich dafür einen passenden Adapter gedruckt. Dazu kommt noch ein
 
 ![Provisorischer Abstandshalter](/images/2020-07-15-alfawise-u50-unboxing-28.jpg)
 
-# Mein erster Eindruck
+## Mein erster Eindruck
 
 Nachdem ich den Drucker bestellt hatte, war ich auf zwei Blogbeträge bei [China-Gadets][5] und [Drucktipps3D][6] gestoßen, die den U50 ziemlich zerrissen haben.
 Nun habe ich natürlich nicht soviel Erfahrung mit anderen Druckern aber ich bin mit dem Aufbau und der Qualität bis jetzt durchaus zufrieden.
