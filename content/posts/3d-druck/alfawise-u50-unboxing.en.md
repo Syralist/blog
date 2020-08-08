@@ -5,9 +5,10 @@ draft: false
 toc: true
 tocNum: false
 tags:
-- 3D printing
+- 3D Printing
 - Prototyping
 - Raspberry Pi
+- Octoprint
 ---
 
 ## My first 3D Printer
