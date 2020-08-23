@@ -6,7 +6,7 @@ toc: true
 tocNum: false
 tags:
 - Smarthome
-- NodeRed
+- Node-RED
 - HomeAssistant
 - Zigbee
 - Xiaomi
