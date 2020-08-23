@@ -95,6 +95,3 @@ Die zweite Erkenntnis ist, immer mit warmem Druckbett zu leveln. Sonst veränder
 [6]: https://www.thingiverse.com/thing:4214964 "Guide Fil Alfawise U50"
 [7]: https://www.thingiverse.com/thing:2889371 "Ender 3 Raspberry Pi 2/3/4 mount with buck converter mount and toolbox"
 [8]: https://www.thingiverse.com/thing:4068606 "Cable clamp/holder for alu profile"
-
-&bdquo;deutsch&ldquo;
-&ldquo;english&rdquo;
