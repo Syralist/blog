@@ -7,7 +7,7 @@ tocNum: false
 tags:
 - Smarthome
 - Node-RED
-- HomeAssistant
+- Home Assistant
 - Zigbee
 - Xiaomi
 - Homematic
