@@ -1,6 +1,7 @@
 ---
 title: "Fensterautomation"
 date: 2020-06-06T14:25:23+02:00
+lastmod: 2021-01-13T17:22:06.089Z
 draft: false
 toc: true
 tocNum: false
@@ -18,6 +19,8 @@ tags:
 Wie ich schon in meinem Artikel über mein [Smarthomesetup][1] geschrieben habe, sind die Automationen das, was ein Smarthome erst smart macht.
 Hier beschreibe ich, wie ich den Heizkörper herunterregle, wenn das Fenster geöffnet wird und wieder zurückstelle, wenn das Fenster geschlossen wird.
 
+**Update vom 13.01.2021:** Mittlerweile lasse ich die Automation nicht mehr über Node-Red laufen, sondern nutze dafür die in Home Assistant eingebauten [Automationen](#automation-in-home-assistant).
+
 ### Beteiligte Komponenten
 
 Das Fenster wird mit einem **Xiaomi Aqara Tür-/Fensterkontakt** überwacht. Der sendet den Status per **Zigbee** an den Conbee Stick. Der Conbee ist per Deconz in Home Assistant eingebunden.
@@ -33,7 +36,64 @@ Die Absenktemperatur wird über eine *input_number* Entity eingestellt.
 
 ![input_number](/images/2020-06-06-input-number.png)
 
-### NodeRed
+### Automation in Home Assistant
+
+Ich habe für jedes Fenster eine Automation erstellt. Die Automation läuft im Modus **Neu Starten**, weil ich eine *Warten*-Aktion verwende und gegebenenfalls noch laufende Instanzen der Automation so abgebrochen werden.
+
+![Automation erstellen](/images/2021-01-13-automation-01.png)
+
+Der Auslöser ist ganz einfach: Wenn der Fensterkontakt den Zustand zu `on` wechselt, ist das Fenster geöffnet und die Automation soll starten.
+
+![Auslöser einstellen](/images/2021-01-13-automation-02.png)
+
+Ich habe hier noch eine Bedingung eingefügt, dass meine Heizungsanlage laufen muss. Wenn im Sommer die Heizung ausgeschaltet ist, soll die Automation nicht am Heizkörper rumdrehen.
+
+![optionale Bedingung](/images/2021-01-13-automation-03.png)
+
+Nun folgen die Aktionen, die ausgeführt werden sollen. Als erstes wird eine temporäre Szene erstellt, in der der Zustand des Thermostaten gespeichert wird. 
+Dafür wird der Dienst `scene.create` aufgerufen und eine `scene_id` sowie die Entities übergeben.
+
+Als nächstes wird der Dienst `climate.set_temperature` aufgerufen. Die Temperatur ist nicht fest eingetragen, sondern wird mit Hilfe eines Templates aus dem *input_number*-Helfer ausgelesen.
+
+![Aktionen Teil 1](/images/2021-01-13-automation-04.png)
+
+Danach wird eine **Auf Auslöser warten** Aktion gestartet, die die Automation pausiert bis der Fensterkontakt wieder geschlossen meldet. Es ist kein Timeout eingetragen, so dass die Automation theoretisch ewig aktiv bleibt.
+
+Wenn das Fenster wieder geschlossen ist, folgt als letzte Aktion das Aktivieren der vorher gespeicherten Szene.
+
+![Aktionen Teil 2](/images/2021-01-13-automation-05.png)
+
+Hier noch die Automation als YAML zum Importieren:
+```yaml
+alias: Fenster Büro
+description: ''
+trigger:
+  - platform: state
+    entity_id: binary_sensor.fenster_buero
+    to: 'on'
+condition:
+  - condition: state
+    entity_id: binary_sensor.vicare_heizkreisaktiv
+    state: 'on'
+action:
+  - service: scene.create
+    data:
+      scene_id: buero_snapshot
+      snapshot_entities:
+        - climate.00201a49a039a4
+  - service: climate.set_temperature
+    data:
+      temperature: '{{ states(''input_number.temperatur_niedrig'') }}'
+    entity_id: climate.00201a49a039a4
+  - wait_for_trigger:
+      - platform: state
+        entity_id: binary_sensor.fenster_buero
+        to: 'off'
+  - scene: scene.buero_snapshot
+mode: restart
+```
+
+### NodeRed *(nicht mehr genutzt)*
 
 Die Automation ist in NodeRed umgesetzt und besteht aus sechs Nodes.
 

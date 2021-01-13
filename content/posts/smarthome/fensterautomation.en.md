@@ -1,6 +1,7 @@
 ---
 title: "Window Automation"
 date: 2020-06-06T14:25:23+02:00
+lastmod: 2021-01-13T17:22:06.089Z
 draft: false
 toc: true
 tocNum: false
@@ -18,6 +19,8 @@ tags:
 As I wrote in my article about my [Smarthome setup][1], automation is what makes a smart home smart.
 Here I describe how I turn the radiator down when the window is opened and turn it back up again when the window is closed.
 
+**Update 2021-01-13:** In the meantime, I no longer run the automation via Node-Red, but instead use the [automations](#automation-in-home-assistant) natively built into Home Assistant.
+
 ### Involved Components
 
 The window is monitored with a **Xiaomi Aqara door/window contact**. This sends the status via **Zigbee** to the Conbee Stick. The Conbee is integrated into Home Assistant via Deconz.
@@ -33,7 +36,63 @@ The reduced temperature is set via an *input_number* entity.
 
 ![input_number](/images/2020-06-06-input-number.png)
 
-### NodeRed
+### Automation in Home Assistant
+
+I have created an automation for each window. The automation runs in **Restart** mode because I use a *Wait* action and any instances of the automation that are still running will be cancelled as a result.
+
+![create the automation](/images/2021-01-13-automation-01.png)
+
+The trigger is quite simple: When the window contact changes state to `on`, the window is open and the automation should start.
+
+![set the trigger](/images/2021-01-13-automation-02.png)
+
+I have added a condition here that my heating system must be running. When the heating is switched off in summer, the automation should not mess with the radiator.
+
+![optional condition](/images/2021-01-13-automation-03.png)
+
+Now follow the actions that are to be carried out. First, a temporary scene is created in which the state of the thermostat is saved. 
+For this, the service `scene.create` is called and a `scene_id` and the entities are passed.
+
+Next, the service `climate.set_temperature` is called. The temperature is not entered as a fixed value, but is read from the *input_number* helper with the help of a template.
+
+![actions part 1](/images/2021-01-13-automation-04.png)
+
+Next, a **Wait for trigger** action is started, which pauses the automation until the window contact reports closed again. No timeout is entered, so that the automation theoretically remains active forever.
+
+When the window is closed again, the last action is to activate the previously saved scene.
+
+![actions part 2](/images/2021-01-13-automation-05.png)
+
+Here is the complete YAML for import:
+```yaml
+alias: Fenster Büro
+description: ''
+trigger:
+  - platform: state
+    entity_id: binary_sensor.fenster_buero
+    to: 'on'
+condition:
+  - condition: state
+    entity_id: binary_sensor.vicare_heizkreisaktiv
+    state: 'on'
+action:
+  - service: scene.create
+    data:
+      scene_id: buero_snapshot
+      snapshot_entities:
+        - climate.00201a49a039a4
+  - service: climate.set_temperature
+    data:
+      temperature: '{{ states(''input_number.temperatur_niedrig'') }}'
+    entity_id: climate.00201a49a039a4
+  - wait_for_trigger:
+      - platform: state
+        entity_id: binary_sensor.fenster_buero
+        to: 'off'
+  - scene: scene.buero_snapshot
+mode: restart
+```
+### NodeRed *(no longer used)*
 
 The automation is implemented in NodeRed and consists of six nodes.
 
