@@ -5,3 +5,6 @@
 	path = public
 	url = git@github.com:Syralist/syralist.github.io.git
 	branch = master
+[submodule "theme/meme"]
+	path = themes/meme
+	url = https://github.com/reuixiy/hugo-theme-meme
