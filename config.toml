@@ -49,7 +49,7 @@ canonifyURLS = true
 
 # URL structure
 [permalinks]
-    categories = "/categories/:slug/"
+    # categories = "/categories/:slug/"
     tags = "/tags/:slug/"
 
 # Taxonomies
@@ -112,9 +112,9 @@ canonifyURLS = true
     threshold = 80
     includeNewer = true
     toLower = true
-    [[related.indices]]
-        name = "categories"
-        weight = 100
+    # [[related.indices]]
+    #     name = "categories"
+    #     weight = 100
     [[related.indices]]
         name = "tags"
         weight = 95
@@ -147,11 +147,8 @@ canonifyURLS = true
     page = ["HTML"]
     home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
     section = ["HTML"]
-    # Taxonomy
-    taxonomyTerm = ["HTML"]
-    # Taxonomy term
     taxonomy = ["HTML"]
-    # Note: https://github.com/gohugoio/hugo/issues/4528#issuecomment-508488859
+    term = ["HTML"]
 
 # Maximum number of items in the Atom & RSS feed
 [services.rss]
@@ -201,74 +198,94 @@ canonifyURLS = true
     #     weight = 1
     #     pre = "internal"
     #     post = "home"
-    [[languages.en.menu.main]]
-        url = "/en/posts/"
-        name = "Posts"
+
+##########################################
+# Configure Multilingual Mode
+
+[languages]
+    # de
+    [languages.de]
+        languageName = "🌍 De"
+        weight = 1
+        languageCode = "de-DE"
+        contentDir = "content"
+        [languages.de.menu]
+[[languages.de.menu.main]]
+    url = "/posts/"
+    name = "Beiträge"
+    weight = 2
+    pre = "internal"
+    post = "archive"
+# [[languages.de.menu.main]]
+#     url = "/categories/"
+#     name = "Kategorien"
+#     weight = 3
+#     pre = "internal"
+#     post = "th"
+[[languages.de.menu.main]]
+    url = "/tags/"
+    name = "Tags"
+    weight = 4
+    pre = "internal"
+    post = "tags"
+[[languages.de.menu.main]]
+    url = "/about/"
+    name = "Info"
+    weight = 5
+    pre = "internal"
+    post = "user-circle"
+[[languages.de.menu.main]]
+    weight = 6
+    identifier = "theme-switcher"
+[[languages.de.menu.main]]
+    weight = 7
+    identifier = "lang-switcher"
+[[languages.de.menu.main]]
+    weight = 8
+    identifier = "search"
+    post = "search"
+
+    # en
+    [languages.en]
+        languageName = "🌍 En"
         weight = 2
-        pre = "internal"
-        post = "archive"
-    [[languages.en.menu.main]]
-        url = "/en/categories/"
-        name = "Categories"
-        weight = 3
-        pre = "internal"
-        post = "th"
-    [[languages.en.menu.main]]
-        url = "/en/tags/"
-        name = "Tags"
-        weight = 4
-        pre = "internal"
-        post = "tags"
-    [[languages.en.menu.main]]
-        url = "/en/about/"
-        name = "About"
-        weight = 5
-        pre = "internal"
-        post = "user-circle"
-    [[languages.en.menu.main]]
-        weight = 6
-        identifier = "theme-switcher"
-    [[languages.en.menu.main]]
-        weight = 7
-        identifier = "lang-switcher"
-    [[languages.en.menu.main]]
-        weight = 8
-        identifier = "search"
-        post = "search"
-    [[menu.main]]
-        url = "/posts/"
-        name = "Beiträge"
-        weight = 2
-        pre = "internal"
-        post = "archive"
-    [[menu.main]]
-        url = "/categories/"
-        name = "Kategorien"
-        weight = 3
-        pre = "internal"
-        post = "th"
-    [[menu.main]]
-        url = "/tags/"
-        name = "Tags"
-        weight = 4
-        pre = "internal"
-        post = "tags"
-    [[menu.main]]
-        url = "/about/"
-        name = "Info"
-        weight = 5
-        pre = "internal"
-        post = "user-circle"
-    [[menu.main]]
-        weight = 6
-        identifier = "theme-switcher"
-    [[menu.main]]
-        weight = 7
-        identifier = "lang-switcher"
-    [[menu.main]]
-        weight = 8
-        identifier = "search"
-        post = "search"
+        languageCode = "en-US"
+        contentDir = "content"
+        [languages.en.menu]
+[[languages.en.menu.main]]
+    url = "/en/posts/"
+    name = "Posts"
+    weight = 2
+    pre = "internal"
+    post = "archive"
+# [[languages.en.menu.main]]
+#     url = "/en/categories/"
+#     name = "Categories"
+#     weight = 3
+#     pre = "internal"
+#     post = "th"
+[[languages.en.menu.main]]
+    url = "/en/tags/"
+    name = "Tags"
+    weight = 4
+    pre = "internal"
+    post = "tags"
+[[languages.en.menu.main]]
+    url = "/en/about/"
+    name = "About"
+    weight = 5
+    pre = "internal"
+    post = "user-circle"
+[[languages.en.menu.main]]
+    weight = 6
+    identifier = "theme-switcher"
+[[languages.en.menu.main]]
+    weight = 7
+    identifier = "lang-switcher"
+[[languages.en.menu.main]]
+    weight = 8
+    identifier = "search"
+    post = "search"
 
 
 
@@ -348,7 +365,7 @@ canonifyURLS = true
     # 3. posts     List of post’s summary
     # 4. page      Normal page/post
 
-    homeLayout = "posts"
+    homeLayout = "page"
 
     ## Poetry
     # Verse (Markdown supported)
@@ -951,6 +968,11 @@ canonifyURLS = true
 
 
     ######################################
+    # Scrollbar
+    customizeScrollbar = true
+
+
+    ######################################
     # Typography
 
     ######################################
@@ -1311,6 +1333,17 @@ canonifyURLS = true
     #       by MemE only
 
 
+    enableSRI = false
+    # Note: subresource integrity will
+    #       block MemE CSS and JS on third
+    #       party websites like Google
+    #       Translate. To prevent this,
+    #       your server has to send the
+    #       following header for CSS and
+    #       JS requests:
+    #
+    #       Access-Control-Allow-Origin: *
+
     ######################################
     # Force HTTPS Redirection
 
@@ -1364,19 +1397,35 @@ canonifyURLS = true
     # Note: you can leave these two
     #       options empty("")
 
-##########################################
-# Configure Multilingual Mode
+    ######################################
+    # Customize host for third-party libraries
 
-# de
-[languages.de]
-    languageName = "🌍 De"
-    weight = 1
-    languageCode = "de-DE"
-    contentDir = "content"
-
-# en
-[languages.en]
-    languageName = "🌍 En"
-    weight = 2
-    languageCode = "en-US"
-    contentDir = "content"
+    [params.lib]
+        host = "https://cdn.jsdelivr.net"
+        # Note: set it to root("/") and set
+        #       the path below if you want to host
+        #       the lib directly from “local”.
+        #       I.e. set path to "js/lib.min.js",
+        #       and put this file to your
+        #       /static/js/lib.min.js
+    [params.lib.path]
+        clipboard = "/npm/clipboard-polyfill@2.8.6/dist/clipboard-polyfill.min.js"
+        instantsearch = "/npm/instantsearch.js@2/dist/instantsearch.min.js"
+        gitalk = "/npm/gitalk@1/dist/gitalk.min.js"
+        gitalk_css = "/npm/gitalk@1/dist/gitalk.css"
+        instantpage = "/npm/instant.page@5.1.0/instantpage.min.js"
+        katex = "/npm/katex@0.13.0/dist/katex.min.js"
+        katex_css = "/npm/katex@0.13.0/dist/katex.min.css"
+        katex_mhchem = "/npm/katex@0.13.0/dist/contrib/mhchem.min.js"
+        katex_auto_render = "/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        lunr = "/npm/lunr@2.3.9/lunr.min.js"
+        lunr_tinyseg = "/npm/lunr-languages@1.4.0/tinyseg.js"
+        lunr_stemmer = "/npm/lunr-languages@1.4.0/min/lunr.stemmer.support.min.js"
+        lunr_lang = "/npm/lunr-languages@1.4.0/min/lunr.de.min.js"
+        mathjax = "/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"
+        medium_zoom = "/npm/medium-zoom@latest/dist/medium-zoom.min.js"
+        mermaid = "/npm/mermaid@8.8.3/dist/mermaid.min.js"
+        qrcode = "/npm/qrcode-generator@1.4.4/qrcode.min.js"
+        valine = "/npm/valine@1.4.14/dist/Valine.min.js"
+        busuanzi = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+        utterances = "https://utteranc.es/client.js"
